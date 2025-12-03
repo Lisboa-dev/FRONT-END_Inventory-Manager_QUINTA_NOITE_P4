@@ -55,7 +55,7 @@ export const ProductForm = ({ product, categories, onClose, onSuccess }: Product
 
       onSuccess();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to save product');
+      setError(err instanceof Error ? err.message : 'Falha ao guardar o produto');
     } finally {
       setLoading(false);
     }
@@ -63,58 +63,58 @@ export const ProductForm = ({ product, categories, onClose, onSuccess }: Product
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg max-w-md w-full p-6">
+      <div className="bg-white dark:bg-gray-800 rounded-lg max-w-md w-full p-6">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-bold text-gray-800">
-            {product ? 'Edit Product' : 'Add Product'}
+          <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200">
+            {product ? 'Editar Produto' : 'Adicionar Produto'}
           </h3>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
             <X size={24} />
           </button>
         </div>
 
         {error && (
-          <div className="mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          <div className="mb-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-500/30 text-red-700 dark:text-red-400 px-4 py-3 rounded-lg">
             {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Name *
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Nome *
             </label>
             <input
               type="text"
               value={formData.nome}
               onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Description
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Descrição
             </label>
             <textarea
               value={formData.descricao}
               onChange={(e) => setFormData({ ...formData, descricao: e.target.value })}
               rows={3}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Category
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Categoria
             </label>
             <select
               value={formData.genero_id}
               onChange={(e) => setFormData({ ...formData, genero_id: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
             >
-              <option value="">Select a category</option>
+              <option value="">Selecione uma categoria</option>
               {categories.map((category) => (
                 <option key={category.id} value={category.id}>
                   {category.nome}
@@ -125,8 +125,8 @@ export const ProductForm = ({ product, categories, onClose, onSuccess }: Product
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Price *
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Preço *
               </label>
               <input
                 type="number"
@@ -134,20 +134,20 @@ export const ProductForm = ({ product, categories, onClose, onSuccess }: Product
                 value={formData.preco}
                 onChange={(e) => setFormData({ ...formData, preco: e.target.value })}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Quantity *
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Quantidade *
               </label>
               <input
                 type="number"
                 value={formData.quantidade}
                 onChange={(e) => setFormData({ ...formData, quantidade: e.target.value })}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
               />
             </div>
           </div>
@@ -156,16 +156,16 @@ export const ProductForm = ({ product, categories, onClose, onSuccess }: Product
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
-              Cancel
+              Cancelar
             </button>
             <button
               type="submit"
               disabled={loading}
               className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:bg-blue-300"
             >
-              {loading ? 'Saving...' : 'Save'}
+              {loading ? 'A guardar...' : 'Guardar'}
             </button>
           </div>
         </form>

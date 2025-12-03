@@ -5,7 +5,7 @@ import { Register } from './components/Register';
 import { Dashboard } from './components/Dashboard';
 
 const AppContent = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
   const [showRegister, setShowRegister] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
@@ -14,6 +14,10 @@ const AppContent = () => {
     setShowRegister(false);
     setTimeout(() => setShowSuccessMessage(false), 3000);
   };
+
+  if (isLoading) {
+    return <div className="w-full h-full flex items-center justify-center">Carregando...</div>;
+  }
 
   if (isAuthenticated) {
     return <Dashboard />;
@@ -32,7 +36,7 @@ const AppContent = () => {
     <>
       {showSuccessMessage && (
         <div className="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50">
-          Account created successfully! Please sign in.
+          Conta criada com sucesso! Por favor, faça o login.
         </div>
       )}
       <Login onRegisterClick={() => setShowRegister(true)} />
