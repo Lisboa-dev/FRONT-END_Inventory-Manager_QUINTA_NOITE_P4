@@ -2,7 +2,7 @@ import { LoginCredentials, RegisterData, AuthResponse, User, Product, Batch, Cat
 import { createAuthHeaders } from './auth';
 import { mockUsers, mockProducts, mockBatches, mockCategories } from './mockData';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true';
 
 class ApiClient {

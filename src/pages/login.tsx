@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { authService } from '../services/auth';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const LoginPage: React.FC = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -17,7 +19,7 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     setError(null);
     try {
-      const response = await fetch('http://localhost:3000/users', {
+      const response = await fetch(''+ API_BASE_URL+'/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
