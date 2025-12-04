@@ -1,8 +1,15 @@
 export interface User {
-  id?: number;
+  id: number;
   nome: string;
   email: string;
 }
+
+export interface User_Api {
+  nome: string;
+  email: string;
+  senha: string;
+}
+
 
 export interface LoginCredentials {
   email: string;
@@ -21,25 +28,55 @@ export interface AuthResponse {
 }
 
 export interface Product {
-  id?: number;
+  id: number;
   nome: string;
   descricao?: string;
+  barCode: string;
   preco: number;
-  barcode: string;
-  loteId?: number;
+  quantidade: number;
+  lote_id?: number;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface Product_Api{
+  nome: string;
+  descricao?: string;
+  barCode: string;
+  preco: number;
+  quantidade: number;
+  lote_id?: number;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface Batch {
-  id?: number;
+  id: number;
   codigo:string;
+  produto_id: number;
   quantidade: number;
-  data_validade: string;
+  data_validade:string;
+  genero_id?: number;
+  created_at?: string;
+}
+
+export interface Batch_Api{
+  codigo:string;
+  produto_id: number;
+  quantidade: number;
+  data_validade:string;
+  genero_id?: number;
   created_at?: string;
 }
 
 export interface Category {
-  id?: number;
+  id: number;
   nome: string;
-  descricao?: string;
+  created_at?: string;
+}
+
+export interface Category_Api{ 
+  id: number;
+  nome: string;
   created_at?: string;
 }

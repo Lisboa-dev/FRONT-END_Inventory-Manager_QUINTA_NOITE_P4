@@ -43,7 +43,7 @@ export const Batches: React.FC = () => {
         ...formData,
         data_validade: formData.data_validade ? new Date(formData.data_validade).toISOString() : new Date().toISOString(),
         quantidade: Number(formData.quantidade),
-
+        id: 
 
       };
 
@@ -129,7 +129,7 @@ export const Batches: React.FC = () => {
                   <td style={tableCellStyle}>{new Date(lote.data_validade).toLocaleDateString()}</td>
                   <td style={{ ...tableCellStyle, textAlign: 'center', width: '120px' }}>
                     <button onClick={() => handleEdit(lote)} style={{ marginRight: '8px', background: 'none', border: 'none', color: '#5dade2', cursor: 'pointer', fontWeight: 'bold' }}>Editar</button>
-                    <button onClick={() => handleDelete(lote.id)} style={{ background: 'none', border: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 'bold' }}>Excluir</button>
+                    <button onClick={() => handleDelete()} style={{ background: 'none', border: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 'bold' }}>Excluir</button>
                   </td>
                 </tr>
               ))}
