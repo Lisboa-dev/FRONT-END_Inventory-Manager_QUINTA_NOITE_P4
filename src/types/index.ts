@@ -33,6 +33,7 @@ export interface Product {
 
 export interface Batch {
   id: number;
+  codigo:string;
   produto_id: number;
   quantidade: number;
   data_entrada: string;

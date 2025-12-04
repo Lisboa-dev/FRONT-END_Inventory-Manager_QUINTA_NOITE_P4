@@ -62,7 +62,7 @@ export const Batches: React.FC = () => {
     setEditingId(lote.id);
     setFormData({
       codigo: lote.codigo,
-      dataEntrada: new Date(lote.dataEntrada).toISOString().split('T')[0],
+      dataEntrada: new Date(lote.data_entrada).toISOString().split('T')[0],
     });
   };
 
