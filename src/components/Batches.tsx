@@ -4,7 +4,8 @@ import { Batch } from '../types';
 
 const initialFormState = {
   codigo: '',
-  dataEntrada: '',
+  data_validade: '',
+  quantidade: 0,
 };
 
 export const Batches: React.FC = () => {
@@ -38,9 +39,12 @@ export const Batches: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const payload = {
+      const payload= {
         ...formData,
-        dataEntrada: formData.dataEntrada ? new Date(formData.dataEntrada).toISOString() : new Date().toISOString(),
+        data_validade: formData.data_validade ? new Date(formData.data_validade).toISOString() : new Date().toISOString(),
+        quantidade: Number(formData.quantidade),
+        codigo: formData.codigo,
+
       };
 
       if (editingId) {
@@ -59,10 +63,12 @@ export const Batches: React.FC = () => {
   };
 
   const handleEdit = (lote: Batch) => {
-    setEditingId(lote.id);
+    if (lote.id){
+    setEditingId(lote.id);}
     setFormData({
       codigo: lote.codigo,
-      dataEntrada: new Date(lote.data_entrada).toISOString().split('T')[0],
+      data_validade: new Date(lote.data_validade).toISOString().split('T')[0],
+      quantidade: lote.quantidade,
     });
   };
 
@@ -96,7 +102,7 @@ export const Batches: React.FC = () => {
             </div>
             <div>
               <label>Data de Entrada:</label>
-              <input type="date" name="dataEntrada" value={formData.dataEntrada} onChange={handleInputChange} required style={inputStyle} />
+              <input type="date" name="data_validade" value={formData.data_validade} onChange={handleInputChange} required style={inputStyle} />
             </div>
           </div>
           <div style={{ marginTop: '20px' }}>
@@ -120,7 +126,7 @@ export const Batches: React.FC = () => {
                 <tr key={lote.id}>
                   <td style={{ ...tableCellStyle, textAlign: 'center' }}>{lote.id}</td>
                   <td style={tableCellStyle}>{lote.codigo}</td>
-                  <td style={tableCellStyle}>{new Date(lote.dataEntrada).toLocaleDateString()}</td>
+                  <td style={tableCellStyle}>{new Date(lote.data_validade).toLocaleDateString()}</td>
                   <td style={{ ...tableCellStyle, textAlign: 'center', width: '120px' }}>
                     <button onClick={() => handleEdit(lote)} style={{ marginRight: '8px', background: 'none', border: 'none', color: '#5dade2', cursor: 'pointer', fontWeight: 'bold' }}>Editar</button>
                     <button onClick={() => handleDelete(lote.id)} style={{ background: 'none', border: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 'bold' }}>Excluir</button>

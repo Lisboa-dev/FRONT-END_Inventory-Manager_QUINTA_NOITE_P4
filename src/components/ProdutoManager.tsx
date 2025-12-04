@@ -55,7 +55,7 @@ const ProdutoManager: React.FC = () => {
     const dataToSend = {
       ...formData,
       preco: precoFinal,
-      loteId: Number(formData.loteId),
+      lote_id: Number(formData.loteId),
     };
 
     try {
@@ -84,7 +84,7 @@ const ProdutoManager: React.FC = () => {
       barCode: produto.barCode,
       descricao: produto.descricao || '',
       preco: produto.preco.toString(),
-      loteId: produto.loteId,
+      lote_id: produto.lote_id,
     });
   };
 
@@ -279,7 +279,7 @@ const ProdutoManager: React.FC = () => {
                     R$ {(Number(produto.preco) || 0).toFixed(2)}
                   </td>
                   <td style={{ ...tableCellStyle, textAlign: 'center' }}>
-                    {produto.lote?.codigo ?? produto.loteId}
+                    {  produto.lote_id}
                   </td>
                   <td style={{ ...tableCellStyle, textAlign: 'center' }}>
                     <button

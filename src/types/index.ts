@@ -4,6 +4,8 @@ export interface User {
   email: string;
 }
 
+
+
 export interface LoginCredentials {
   email: string;
   senha: string;
@@ -24,26 +26,31 @@ export interface Product {
   id: number;
   nome: string;
   descricao?: string;
+  barCode: string;
   preco: number;
   quantidade: number;
-  genero_id?: number;
+  lote_id?: number;
   created_at?: string;
   updated_at?: string;
 }
+
 
 export interface Batch {
   id: number;
   codigo:string;
   produto_id: number;
   quantidade: number;
-  data_entrada: string;
-  data_validade?: string;
+  data_validade:string;
+  genero_id?: number;
   created_at?: string;
 }
+
+
 
 export interface Category {
   id: number;
   nome: string;
-  descricao?: string;
   created_at?: string;
 }
+
+

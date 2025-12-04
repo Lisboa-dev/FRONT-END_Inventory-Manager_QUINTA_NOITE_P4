@@ -12,9 +12,8 @@ interface BatchFormProps {
 
 export const BatchForm = ({ batch, products, onClose, onSuccess }: BatchFormProps) => {
   const [formData, setFormData] = useState({
-    produto_id: '',
+    codigo: '',
     quantidade: '',
-    data_entrada: '',
     data_validade: '',
   });
   const [loading, setLoading] = useState(false);
@@ -23,14 +22,13 @@ export const BatchForm = ({ batch, products, onClose, onSuccess }: BatchFormProp
   useEffect(() => {
     if (batch) {
       setFormData({
-        produto_id: batch.produto_id.toString(),
         quantidade: batch.quantidade.toString(),
-        data_entrada: batch.data_entrada.split('T')[0],
+        codigo: batch.codigo.split('T')[0],
         data_validade: batch.data_validade ? batch.data_validade.split('T')[0] : '',
       });
     } else {
       const today = new Date().toISOString().split('T')[0];
-      setFormData((prev) => ({ ...prev, data_entrada: today }));
+      setFormData((prev) => ({ ...prev, data_validade: today }));
     }
   }, [batch]);
 
@@ -41,14 +39,14 @@ export const BatchForm = ({ batch, products, onClose, onSuccess }: BatchFormProp
 
     try {
       const batchData = {
-        produto_id: parseInt(formData.produto_id),
         quantidade: parseInt(formData.quantidade),
-        data_entrada: formData.data_entrada,
-        data_validade: formData.data_validade || undefined,
+        data_validade: formData.data_validade,
+        codigo: formData.codigo,
       };
 
       if (batch) {
-        await api.updateBatch(batch.id, batchData);
+        if(batch.id){
+        await api.updateBatch(batch.id, batchData);}
       } else {
         await api.createBatch(batchData);
       }
@@ -82,11 +80,11 @@ export const BatchForm = ({ batch, products, onClose, onSuccess }: BatchFormProp
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Produto *
+              codigo *
             </label>
             <select
-              value={formData.produto_id}
-              onChange={(e) => setFormData({ ...formData, produto_id: e.target.value })}
+              value={formData.codigo}
+              onChange={(e) => setFormData({ ...formData, codigo: e.target.value })}
               required
               className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
             >
@@ -112,18 +110,6 @@ export const BatchForm = ({ batch, products, onClose, onSuccess }: BatchFormProp
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Data de Entrada *
-            </label>
-            <input
-              type="date"
-              value={formData.data_entrada}
-              onChange={(e) => setFormData({ ...formData, data_entrada: e.target.value })}
-              required
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
-            />
-          </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">

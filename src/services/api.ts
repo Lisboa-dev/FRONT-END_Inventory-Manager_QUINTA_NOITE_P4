@@ -266,7 +266,7 @@ class ApiClient {
     return this.request<Product>(`/produtos/${id}`);
   }
 
-  async createProduct(product: Omit<Product, 'id'>): Promise<Product> {
+  async createProduct(product: Omit<Product, 'id' >): Promise<Product> {
     return this.request<Product>('/produtos', {
       method: 'POST',
       body: JSON.stringify(product),
@@ -294,7 +294,7 @@ class ApiClient {
     return this.request<Batch>(`/lotes/${id}`);
   }
 
-  async createBatch(batch: Omit<Batch, 'id'>): Promise<Batch> {
+  async createBatch(batch: Omit<Batch, 'id' | 'produto_id'>): Promise<Batch> {
     return this.request<Batch>('/lotes', {
       method: 'POST',
       body: JSON.stringify(batch),
