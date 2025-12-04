@@ -1,5 +1,5 @@
 export interface User {
-  id: number;
+  id?: number;
   nome: string;
   email: string;
 }
@@ -21,28 +21,24 @@ export interface AuthResponse {
 }
 
 export interface Product {
-  id: number;
+  id?: number;
   nome: string;
   descricao?: string;
   preco: number;
-  quantidade: number;
-  genero_id?: number;
-  created_at?: string;
-  updated_at?: string;
+  barcode: string;
+  loteId?: number;
 }
 
 export interface Batch {
-  id: number;
+  id?: number;
   codigo:string;
-  produto_id: number;
   quantidade: number;
-  data_entrada: string;
-  data_validade?: string;
+  data_validade: string;
   created_at?: string;
 }
 
 export interface Category {
-  id: number;
+  id?: number;
   nome: string;
   descricao?: string;
   created_at?: string;

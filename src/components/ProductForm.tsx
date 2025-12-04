@@ -5,7 +5,7 @@ import { Product, Category } from '../types';
 
 interface ProductFormProps {
   product: Product | null;
-  categories: Category[];
+  lotId: Category[];
   onClose: () => void;
   onSuccess: () => void;
 }

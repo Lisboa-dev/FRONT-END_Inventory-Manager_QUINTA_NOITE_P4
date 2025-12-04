@@ -38,7 +38,8 @@ export const CategoryForm = ({ category, onClose, onSuccess }: CategoryFormProps
       };
 
       if (category) {
-        await api.updateCategory(category.id, categoryData);
+        if(category.id){
+        await api.updateCategory(category.id, categoryData);}
       } else {
         await api.createCategory(categoryData);
       }

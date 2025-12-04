@@ -12,9 +12,8 @@ interface BatchFormProps {
 
 export const BatchForm = ({ batch, products, onClose, onSuccess }: BatchFormProps) => {
   const [formData, setFormData] = useState({
-    produto_id: '',
+    codigo: '',
     quantidade: '',
-    data_entrada: '',
     data_validade: '',
   });
   const [loading, setLoading] = useState(false);
@@ -23,14 +22,13 @@ export const BatchForm = ({ batch, products, onClose, onSuccess }: BatchFormProp
   useEffect(() => {
     if (batch) {
       setFormData({
-        produto_id: batch.produto_id.toString(),
         quantidade: batch.quantidade.toString(),
-        data_entrada: batch.data_entrada.split('T')[0],
+        codigo: batch.codigo.split('T')[0],
         data_validade: batch.data_validade ? batch.data_validade.split('T')[0] : '',
       });
     } else {
       const today = new Date().toISOString().split('T')[0];
-      setFormData((prev) => ({ ...prev, data_entrada: today }));
+      setFormData((prev) => ({ ...prev, data_validade: today }));
     }
   }, [batch]);
 
@@ -41,14 +39,14 @@ export const BatchForm = ({ batch, products, onClose, onSuccess }: BatchFormProp
 
     try {
       const batchData = {
-        produto_id: parseInt(formData.produto_id),
         quantidade: parseInt(formData.quantidade),
-        data_entrada: formData.data_entrada,
-        data_validade: formData.data_validade || undefined,
+        data_validade: formData.data_validade,
+        code: formData.codigo,
       };
 
       if (batch) {
-        await api.updateBatch(batch.id, batchData);
+        if(batch.id){
+        await api.updateBatch(batch.id, batchData);}
       } else {
         await api.createBatch(batchData);
       }
