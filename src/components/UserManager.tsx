@@ -62,7 +62,7 @@ const UserManager: React.FC = () => {
 
   const handleEdit = (user: User) => {
     setEditingId(user.id);
-    setFormData({ name: user.nome, email: user.email, password: '', role: user.role });
+    setFormData({ nome: user.nome, email: user.email, password: '', role: user.role });
   };
 
   const handleDelete = async (id: number) => {

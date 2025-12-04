@@ -1,22 +1,23 @@
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { api } from '../services/api';
-import { Product, Category } from '../types';
+import { Product, Batch } from '../types';
 
 interface ProductFormProps {
   product: Product | null;
-  lotId: Category[];
+  loteId: Batch[];
   onClose: () => void;
   onSuccess: () => void;
 }
 
-export const ProductForm = ({ product, categories, onClose, onSuccess }: ProductFormProps) => {
+export const ProductForm = ({ product, loteId, onClose, onSuccess }: ProductFormProps) => {
   const [formData, setFormData] = useState({
     nome: '',
     descricao: '',
     preco: '',
     quantidade: '',
-    genero_id: '',
+    barCode: '',
+    lote_id: 0,
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -28,7 +29,8 @@ export const ProductForm = ({ product, categories, onClose, onSuccess }: Product
         descricao: product.descricao || '',
         preco: product.preco.toString(),
         quantidade: product.quantidade.toString(),
-        genero_id: product.genero_id?.toString() || '',
+        lote_id: product.lote_id? product.lote_id:0,
+        barCode: product.barCode || '',
       });
     }
   }, [product]);
@@ -44,7 +46,8 @@ export const ProductForm = ({ product, categories, onClose, onSuccess }: Product
         descricao: formData.descricao || undefined,
         preco: parseFloat(formData.preco),
         quantidade: parseInt(formData.quantidade),
-        genero_id: formData.genero_id ? parseInt(formData.genero_id) : undefined,
+        lote_id: formData.lote_id ?  Number(formData.lote_id) : undefined,
+        barCode: formData.barCode || '', // Assuming barCode is not part of the formData state
       };
 
       if (product) {
@@ -107,17 +110,17 @@ export const ProductForm = ({ product, categories, onClose, onSuccess }: Product
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Categoria
+              lote
             </label>
             <select
-              value={formData.genero_id}
-              onChange={(e) => setFormData({ ...formData, genero_id: e.target.value })}
+              value={formData.lote_id}
+              onChange={(e) => setFormData({ ...formData, lote_id: e.target.value as unknown as number })}
               className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
             >
-              <option value="">Selecione uma categoria</option>
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.nome}
+              <option value="">Selecione um lote</option>
+              {loteId.map((lote) => (
+                <option key={lote.id} value={lote.id}>
+                  {lote.codigo}
                 </option>
               ))}
             </select>

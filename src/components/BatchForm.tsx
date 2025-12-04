@@ -41,7 +41,7 @@ export const BatchForm = ({ batch, products, onClose, onSuccess }: BatchFormProp
       const batchData = {
         quantidade: parseInt(formData.quantidade),
         data_validade: formData.data_validade,
-        code: formData.codigo,
+        codigo: formData.codigo,
       };
 
       if (batch) {
@@ -80,11 +80,11 @@ export const BatchForm = ({ batch, products, onClose, onSuccess }: BatchFormProp
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Produto *
+              codigo *
             </label>
             <select
-              value={formData.produto_id}
-              onChange={(e) => setFormData({ ...formData, produto_id: e.target.value })}
+              value={formData.codigo}
+              onChange={(e) => setFormData({ ...formData, codigo: e.target.value })}
               required
               className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
             >
@@ -110,18 +110,6 @@ export const BatchForm = ({ batch, products, onClose, onSuccess }: BatchFormProp
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Data de Entrada *
-            </label>
-            <input
-              type="date"
-              value={formData.data_entrada}
-              onChange={(e) => setFormData({ ...formData, data_entrada: e.target.value })}
-              required
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
-            />
-          </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">

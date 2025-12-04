@@ -12,7 +12,6 @@ interface CategoryFormProps {
 export const CategoryForm = ({ category, onClose, onSuccess }: CategoryFormProps) => {
   const [formData, setFormData] = useState({
     nome: '',
-    descricao: '',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -21,7 +20,6 @@ export const CategoryForm = ({ category, onClose, onSuccess }: CategoryFormProps
     if (category) {
       setFormData({
         nome: category.nome,
-        descricao: category.descricao || '',
       });
     }
   }, [category]);
@@ -34,7 +32,6 @@ export const CategoryForm = ({ category, onClose, onSuccess }: CategoryFormProps
     try {
       const categoryData = {
         nome: formData.nome,
-        descricao: formData.descricao || undefined,
       };
 
       if (category) {
@@ -84,17 +81,7 @@ export const CategoryForm = ({ category, onClose, onSuccess }: CategoryFormProps
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Descrição
-            </label>
-            <textarea
-              value={formData.descricao}
-              onChange={(e) => setFormData({ ...formData, descricao: e.target.value })}
-              rows={4}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
-            />
-          </div>
+         
 
           <div className="flex gap-3 pt-4">
             <button

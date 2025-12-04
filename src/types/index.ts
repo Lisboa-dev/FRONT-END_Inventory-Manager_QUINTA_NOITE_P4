@@ -4,11 +4,6 @@ export interface User {
   email: string;
 }
 
-export interface User_Api {
-  nome: string;
-  email: string;
-  senha: string;
-}
 
 
 export interface LoginCredentials {
@@ -39,16 +34,6 @@ export interface Product {
   updated_at?: string;
 }
 
-export interface Product_Api{
-  nome: string;
-  descricao?: string;
-  barCode: string;
-  preco: number;
-  quantidade: number;
-  lote_id?: number;
-  created_at?: string;
-  updated_at?: string;
-}
 
 export interface Batch {
   id: number;
@@ -60,14 +45,7 @@ export interface Batch {
   created_at?: string;
 }
 
-export interface Batch_Api{
-  codigo:string;
-  produto_id: number;
-  quantidade: number;
-  data_validade:string;
-  genero_id?: number;
-  created_at?: string;
-}
+
 
 export interface Category {
   id: number;
@@ -75,8 +53,4 @@ export interface Category {
   created_at?: string;
 }
 
-export interface Category_Api{ 
-  id: number;
-  nome: string;
-  created_at?: string;
-}
+
